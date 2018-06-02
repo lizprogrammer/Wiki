@@ -46,12 +46,19 @@ var wikipediaHTMLResult = function(data) {
 };
 
 
+function clearTextBox(){
+    document.getElementById('link_id').value = " ";
+}
 
-
+function clearResults(str){
+    document.getElementById('insertTest').innerHTML = str;
+}
 
     function link2() {
         var link_s = document.getElementById('link_id').value;
-        document.getElementById('link_id').value = link_s + " Good Job!"
+        //document.getElementById('link_id').value = link_s + " Good Job!"
+        clearTextBox();
+        clearResults("SURPRISE!")
 
         $('#btn').click(function() {
             $.ajax({
@@ -72,10 +79,11 @@ var wikipediaHTMLResult = function(data) {
 function processResult(apiResult){
 
     console.log(apiResult);
+    clearResults(" ");
 
     //console.log(apiResult.query);
     //console.log(apiResult.query.pages.pageid);
-    document.getElementById('insertTest').innerHTML = "Paragraph changed!";
+    //document.getElementById('insertTest').innerHTML = "Paragraph changed!";
 
      for (var i = 0; i < apiResult[1].length; i++){
           $('#insertTest').append('<p><a href = ' + apiResult[3][i] + ' target="_blank">' +apiResult[1][i] + '</a></p>');
@@ -83,6 +91,7 @@ function processResult(apiResult){
           //console.log(apiResult[2][i]);
           console.log(apiResult[3][i]);
           //document.getElementById('insertTest').innerHTML = apiResult[1][i];
+          clearTextBox()
 
      }
   }
